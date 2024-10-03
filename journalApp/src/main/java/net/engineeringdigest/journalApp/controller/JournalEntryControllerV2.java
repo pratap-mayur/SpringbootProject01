@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@RequestMapping("_journal")
 @RestController
 public class JournalEntryController {
     private Map<Long, JournalEntry> journalEntries = new HashMap<>();
@@ -30,5 +30,10 @@ public class JournalEntryController {
     public boolean delJournalEntryById(@PathVariable Long myId) {
         journalEntries.remove(myId);
         return true;
+    }
+    @PutMapping("id/{myId}")
+    public JournalEntry updateJournalEntryById(@PathVariable Long myId,@RequestBody JournalEntry myEntry ) {
+
+        return journalEntries.put(myId, myEntry);
     }
 }
